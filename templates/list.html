@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+{% block contents %}
+    <h1>{{ title }}</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">ID Produk</th>
+            <th scope="col">Nama Produk</th>
+            <th scope="col">Kategori ID</th>
+            <th scope="col">Harga</th>
+            <th scope="col">Status ID</th>
+            <th scope="col">Hapus</th>
+            <th scope="col">Ubah</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produk in Produk %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ produk.id_produk }}</td>
+              <td>{{ produk.nama_produk }}</td>
+              <td>{{ produk.kategori }}</td>
+              <td>{{ produk.harga }}</td>
+              <td>{{ produk.status }}</td>
+              <td><a class="btn btn-danger" href="{% url 'manajemen:delete' produk.id_produk %}" onclick="confirmDelete('{{ produk.id_produk }}')">Hapus</a></td>
+              <td><a class="btn btn-warning" href="{% url 'manajemen:update' produk.id_produk %}">Ubah</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{% url 'manajemen:create' %}">Tambah</a>
+
+    <script>
+      function confirmDelete(id) {
+        var result = confirm("Anda yakin ingin menghapus?");
+        if (result) {
+          window.location.href = "{% url 'manajemen:delete' delete_id=0 %}".replace('0', id);
+        }
+      }
+    </script>    
+{% endblock contents %}

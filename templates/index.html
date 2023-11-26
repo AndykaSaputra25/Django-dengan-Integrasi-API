@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+{% block contents %}
+    <h1>{{ heading }}</h1>
+    <hr>
+    <h3>DATA PRODUK</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">ID Produk</th>
+          <th scope="col">Nama Produk</th>
+          <th scope="col">Kategori ID</th>
+          <th scope="col">Harga</th>
+          <th scope="col">Status ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produk in Produk %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ produk.id_produk }}</td>
+            <td>{{ produk.nama_produk }}</td>
+            <td>{{ produk.kategori }}</td>
+            <td>{{ produk.harga }}</td>
+            <td>{{ produk.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <hr><hr>
+    <h3>DATA PRODUK BISA DIJUAL</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">ID Produk</th>
+          <th scope="col">Nama Produk</th>
+          <th scope="col">Kategori ID</th>
+          <th scope="col">Harga</th>
+          <th scope="col">Status ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for jual in Dijual %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ jual.id_produk }}</td>
+            <td>{{ jual.nama_produk }}</td>
+            <td>{{ jual.kategori }}</td>
+            <td>{{ jual.harga }}</td>
+            <td>{{ jual.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock contents %}

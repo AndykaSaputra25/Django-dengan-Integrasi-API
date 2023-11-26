@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+{% block contents %}
+    <h1>{{title}}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        {% for form in produk_form %}
+            <div class="form-control m-2 p-2">
+                {{form.label}}
+                {{form}}
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="Submit">Kirim</button>
+    </form>
+{% endblock contents %}
